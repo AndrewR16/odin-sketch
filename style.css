@@ -23,6 +23,7 @@ h1 {
 
 .gridSquare {
     box-sizing: border-box;
-    border: 1px solid black;
     width: 48px;
+    background-color: black;
+    opacity: 0.0%;
 }

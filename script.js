@@ -1,5 +1,4 @@
 const GRID_CONTAINER_SIZE = 768;
-
 let gridWidth = 16;
 
 const gridContainer = document.querySelector(".gridContainer");
@@ -15,7 +14,9 @@ newGridBtn.addEventListener("click", () => {
 
     } while(gridWidth < 0 || gridWidth > 100 || Number.isInteger(gridWidth) == false);
 
-    deleteCurrentGrid();
+    // Delete current grid
+    gridContainer.innerHTML = "";
+    
     generateGrid();
 });
 
@@ -35,16 +36,11 @@ function generateGrid() {
 // Darken a square when its hovered over
 function addHoverEffect() {
     document.querySelectorAll(".gridSquare").forEach((el) => {
-        el.addEventListener("mouseover", (event) => {
+        el.addEventListener("mouseenter", (event) => {
             let element = event.target;
-
-            element.style.backgroundColor = "black";
+            let currentOpacity = window.getComputedStyle(element).getPropertyValue("opacity");
+            
+            element.style.opacity = `${Number.parseFloat(currentOpacity) + 0.1}`;
         })
-    });
-}
-
-function deleteCurrentGrid() {
-    document.querySelectorAll(".gridSquare").forEach((el) => {
-        el.parentElement.removeChild(el);
     });
 }
